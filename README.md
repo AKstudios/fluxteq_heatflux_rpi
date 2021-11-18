@@ -5,7 +5,17 @@ The [FluxTeq COMPAQ DAQ](https://www.fluxteq.com/product-page/compaq-daq) has a 
 ![rpi_datalogger](https://github.com/AKstudios/fluxteq_heatflux_rpi/blob/main/pics/rpi_compaqdaq_usb.jpg)
 
 ---
+## Prerequisites
 
+Run the following commands to install the prerequisits for the scripts to work:
+```
+sudo apt-get install python-pip
+sudo pip install pyserial
+sudo pip install influxdb
+sudo pip install pathlib
+```
+
+---
 ## Instructions
 
 1. Set WiFi SSID and password in the `wpa_supplicant.conf` file. Place this file in the boot partition on the microSD card. Add an empty _ssh_ file as well to enable ssh server on the Pi.
@@ -21,8 +31,14 @@ sudo nano /etc/rc.local
 On the second last line, type the following:
 
 ```
-cd /home/pi/RPi heatflux;./script_handler.sh &
+cd /home/pi/heatflux;./script_handler.sh &
 ```
 
 This will ensure the `script_handler.sh` always runs on boot, which will monitor the other scripts.
+
+6. Run the following command to give root permissions to `script_handler.sh`
+
+```
+sudo chmod +x /home/pi/heatflux/script_handler.sh
+```
 
